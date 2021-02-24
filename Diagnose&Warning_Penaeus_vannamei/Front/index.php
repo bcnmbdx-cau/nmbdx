@@ -379,7 +379,7 @@ img:hover {
 <footer class="footer">
 	<address>
 			
-	<p>小组信息</p>
+	<p>小组信息.</p>
 	 
 	</address>
 </footer>
