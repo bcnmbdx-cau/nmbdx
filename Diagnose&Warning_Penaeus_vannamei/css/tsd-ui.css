@@ -1,0 +1,324 @@
+@charset "UTF-8";
+a.more{
+  position: absolute;
+}
+/* 选项卡新闻列表 */
+  /* 选项卡结构 */
+  .slideTxtBox{
+    text-align: center;
+  }
+  .slideTxtBox .hd{
+    position: relative;
+	  	  
+  }
+  .slideTxtBox .hd li{
+    float: left;
+    cursor: pointer;
+  }
+  .slideTxtBox .hd a:hover{
+    text-decoration: none;
+  }
+  .slideTxtBox .bd ul,.news-list{
+    position: relative;
+  }
+  /* 新闻列表结构 */
+  .news-list{
+    padding-bottom: 0 !important;
+  }
+  .news-list li{
+    background-position: left center;
+    background-repeat: no-repeat;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .news-list li:last-of-type{
+    margin-bottom: 0;
+  }
+  .news-list li a:hover{
+    text-decoration: underline;
+  }
+  .news-list .date{
+    float: right;
+  }
+  .news-list li a {
+    display: block;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+/* 选项卡新闻列表end */
+
+
+/* 图文盒子焦点图 */
+  /* 焦点图结构 */
+  .slideBox{
+    position: relative; 
+    overflow: hidden;
+  }
+  .slideBox .hd{
+    position: absolute; 
+    z-index: 1;
+  }
+  .slideBox .hd li{
+    float: left; 
+    background-color: #fff;
+    text-align: center;  
+    cursor: pointer;
+  }
+  .slideBox .bd{ 
+    position: relative; 
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .slideBox .prev,.slideBox .next{
+    position: absolute; 
+    display: block; 
+  }
+  .slideBox .prev:hover,.slideBox .next:hover{
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+  }
+  .slideBox .prevStop{
+    display: none;
+  }
+  .slideBox .nextStop{
+    display: none;
+  }
+
+  /* 图文盒子结构 */
+  .pic-box{
+    position: relative;
+  }
+  .pic-box p{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    text-align: left;
+  }
+  .pic-box p a{
+    color: #fff;
+  }
+  .pic-box:hover p{
+    background-color: rgba(0, 0, 0, .4);
+  }
+  .pic-box p a:hover{
+    text-decoration: none;
+  }
+/* 图文盒子焦点图end */
+
+/* 图片组 */
+.pic-group{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.pic-group1{
+  width:1000px; 
+  border:1px solid #ccc;
+  padding: 20px 19px;
+}
+.pic-group1 .pic-box1{
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+/* 图片滚动 */
+  /* 图片滚动结构 */
+  .picScroll-left{
+    position:relative; 
+    overflow:hidden;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .picScroll-left .prev,.picScroll-left .next{
+    position: absolute; 
+    left: 15px; 
+    top: 50%; 
+    display: block; 
+    width: 40px; 
+    height: 40px; 
+    margin-top: -25px; 
+    background: url(arrow-left.png) no-repeat; 
+  }
+  .picScroll-left .next{
+    left: auto; 
+    right: 15px; 
+    background: url(arrow-right.png) no-repeat; 
+  }
+  .picScroll-left .prev:hover,.picScroll-left .next:hover{
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  .picScroll-left1 li{
+    position: relative;
+    box-sizing: content-box;
+  }
+
+  /* 图片滚动样式 */
+  .picScroll-left1{
+    width:1000px; 
+    border:1px solid #ccc;
+    padding: 20px 49px;
+  }
+  .pic-box2{
+    width:203px;
+    height:156px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+  }
+  .picScroll-left1 li:hover{
+    transform: scale(.95, .95);
+    transition: .4s;
+  }
+  .pic-box2 img{
+    width:203px;
+    height:156px; 
+  }
+  .pic-box2 p{
+    position: absolute;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+  }
+/* 图片滚动 end */
+
+/* 图标列表 */
+.icon-list{
+  margin-left: auto;
+  margin-right: auto;
+}
+.icon-list li{
+  float: left;
+  text-align: center;
+}
+  /* 左右结构 */
+  .icon-list-lr li{
+    text-align: left;
+    padding-left: 20px;
+  }
+  .icon-list-lr img{
+    display: inline;
+    vertical-align: middle;
+  }
+  .icon-list-lr a{
+    vertical-align: middle;
+  }
+  .icon-list1{
+    width: 420px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border: 1px solid #dadada;
+  }
+  .icon-list1 li{
+    width: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e6f3fd;
+  }
+  .icon-list1 li img{
+    margin-right: 5px;
+  }
+
+/* 图标列表end */
+
+
+/* 搜索框 */
+  /* 搜索框结构 */
+  .search-box{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search-box input{
+    font-family: "Microsoft Yahei";
+  }
+  .search-box .search-icon{
+    position: absolute;
+  }
+
+  /* 搜索框样式 */
+/*  .search-box1{
+    width: 320px;
+  }
+  .search-box1 input{
+    display: block;
+    width: 320px;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #89bce6;
+    color: #333;
+    line-height: 28px;
+  }
+  .search-box1 .search-icon{
+    right: 10px;
+    top: 9px;
+  }
+  input::-webkit-input-placeholder{
+    color: #999;
+  }
+  input:moz-input-placeholder{
+    color: #999;
+  }
+  input:ms-input-placeholder{
+    color: #999;
+  }*/
+/* 搜索框end */
+
+
+
+
+/* 分页 */
+  /* 分页结构 */
+  .pager{
+    text-align: center;
+  }
+  .pager a{
+    display: inline-block;
+    background-color: #fff;
+  }
+
+  /* 分页样式 */
+  .pager1 a{
+    height: 30px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 29px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+  }
+  .pager1 a.on,.pager1 a:hover{
+    background-color: #ff8181;
+    color: #fff;
+    text-decoration: none;
+  }
+/* 分页end */
+
+
+/* 左图右文 */
+  /* 图文结构 */
+  .img-lit{
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .img-lit .img,.img-lit .lit{
+  float: left;
+  }
+/* 左图右文end */
