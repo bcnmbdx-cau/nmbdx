@@ -54,11 +54,10 @@ function get_Max_Page($link)
     <link href="../css/tsd-ui.css" rel="stylesheet">
     <link href="../css/common.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/table.css">
     <script src="../js/jquery.1.71.min.js"></script>
     <script src="../js/jquery.SuperSlide.2.1.1.js"></script>
     <style type="text/css">
-        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        body, html,#allmap {width: 100%;height: 100%;overflow: scroll;margin:0;font-family:"微软雅黑";}
     </style>
     <!--调用百度api -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=16zrDHPLkYrv8e1Tp98hPZ8UUpkKrsdv"></script>
@@ -106,25 +105,13 @@ function get_Max_Page($link)
         filter: alpha(opacity=100) !important;
         opacity: 1 !important;
     }
-    .com-sel {
-        line-height: 1.1rem;
-        cursor: pointer;        /*鼠标上移变成小手*/
-    }
-
-    .com-opt {
-        color: #afbac0;
-        font-size: 1.0rem;
-        border: none;
-        outline: none;
-        /*去掉默认的下拉三角*/
-        appearance:none;
-        -moz-appearance:none;
-        -webkit-appearance:none;
-        /*添加下拉三角图标*/
-        background: url("../images/select.jpg") no-repeat right center transparent;
-        width: 100px;
-
-    }
+    .pagelist {padding:10px 0; text-align:center;}
+    .pagelist span,.pagelist a{ border-radius:3px; border:1px solid #dfdfdf;display:inline-block; padding:5px 12px;}
+    .pagelist a{ margin:0 3px;}
+    .pagelist span.current{ background:#09F; color:#FFF; border-color:black; margin:0 2px;}
+    .pagelist a:hover{background:red; color:#FFF; border-color:red; }
+    .pagelist label{ padding-left:15px; color:#999;}
+    .pagelist label b{color:red; font-weight:normal; margin:0 3px;}
 </style>
 <style>
     .slideBox-common { width:1200px !important;}
@@ -132,13 +119,6 @@ function get_Max_Page($link)
     .slideBox-common li img{width:1200px !important;}
     .slideBox-common .hd ul { height:12px !important;}
     .slideBox-common .hd { bottom:15px !important; }
-    .pagelist {padding:10px 0; text-align:center;}
-    .pagelist span,.pagelist a{ border-radius:3px; border:1px solid #dfdfdf;display:inline-block; padding:5px 12px;}
-    .pagelist a{ margin:0 3px;}
-    .pagelist span.current{ background:#09F; color:#FFF; border-color:#09F; margin:0 2px;}
-    .pagelist a:hover{background:red; color:#FFF; border-color:red; }
-    .pagelist label{ padding-left:15px; color:#999;}
-    .pagelist label b{color:red; font-weight:normal; margin:0 3px;}
 </style>
 <body>
 <!-- 通用页头 -->
@@ -159,7 +139,7 @@ function get_Max_Page($link)
                 else
                 {?>
                     href="index.php" title="点此回到首页"
-                <?php } ?> > 欢迎您！<? echo $_SESSION['username']?></a>
+                <?php } ?> >欢迎您！<? echo $_SESSION['username']?></a>
             <input  class="buttonr" type="button" name="button" id="button" value="退出" onClick="window.location.href = '?act=loginout'">
             <?php
             if ($_SESSION['category_id'] != 3 && $_SESSION['username']) {
@@ -209,7 +189,7 @@ function get_Max_Page($link)
         </li>
     </ul>
 </nav>
-<div id="allmap"></div>
+
 <style>
     .w1 li a {
         width: 448px !important;
@@ -222,87 +202,88 @@ function get_Max_Page($link)
     }
     .nav{    margin-bottom: 0px;
     }</style><!-- main-news end -->
-
 <article class="main-col clear">
     <div class="lp">
         <article class="col-body mb20">
             <article class="col-main clear">
                 <article class="bd">
+                <span class="news-list news-list1 w3">
+				    <table width="1000px" class="table table-hover" style="margin-top:50px">
+    <tr class="title">
+        <td colspan="4" style="text-align: center;border: none"><h1 style="font-size: 35px">病害诊断</h1><a href="addconsult.php" style="text-decoration: none;color: #ff8181">点此向专家问诊</a></td>
+    </tr>
+    <tr>
+        <td width="270px" style="font-size: 20px;">问题</td>
+        <td width="120px" style="font-size: 20px;">用户</td>
+        <td width="150px"style="font-size: 20px;">时间</td>
+        <td width="60px" style="font-size: 20px;">问题状态</td>
+    </tr>
+    <?php
+    if($pageNum>0) {
+    while($row=mysqli_fetch_array($arr)) {
+    ?>
+    <tr >
+        <td width="270px"><div><a href="details.php?id=<?php echo $row['id']?>"</a><?php echo $row['title']?></div> </td>
+        <td width="120px"><?php echo $row['author'] ?></td>
+        <td width="150px"><?php echo $row['last_post_time']?></td>
+        <td width="60px"><?php if($row['reply_time']) echo "已解答";else echo "未解答"?></td>
+    </tr>
+    <tr>
+        <p></p>
+            <?php }
+            }
+            else{
+                echo "<tr><td colspan='5'>暂无人问诊.....</td></tr>";
+            } ?>
 
-                    <script type="text/javascript">
-
-                        //百度地图API功能
-                        var map = new BMap.Map("allmap");
-                        map.centerAndZoom(new BMap.Point(120.378386,30.309756),15);//根据坐标初始化地图
-                        map.enableScrollWheelZoom(true);
-                        map.addControl(new BMap.NavigationControl());   //平移缩放控件
-                        map.addControl(new BMap.ScaleControl());        //比例尺
-                        map.addControl(new BMap.OverviewMapControl());  //缩略地图
-                        map.addControl(new BMap.MapTypeControl());      //地图类型
-                        map.setCurrentCity("杭州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
-
-                        //添加标注
-                        var marker = new BMap.Marker(new BMap.Point(120.378386,30.309756));        // 创建标注
-                        map.addOverlay(marker);                     // 将标注添加到地图中
-                    </script>
-
-
-                    <table width="1000px" class="table table-hover" style="margin-top:50px">
-                        <tr class="title">
-                            <td colspan="4" style="text-align: center;border: none"><h1 style="font-size: 35px">病害诊断</h1><a href="addconsult.php" style="text-decoration: none;color: #ff8181">点此向专家问诊</a></td>
-                        </tr>
-                        <tr>
-                            <td width="270px" style="font-size: 20px;">问题</td>
-                            <td width="120px" style="font-size: 20px;">用户</td>
-                            <td width="150px"style="font-size: 20px;">时间</td>
-                            <td width="60px" style="font-size: 20px;">问题状态</td>
-                        </tr>
-                        <?php
-                        if($pageNum>0) {
-                        while($row=mysqli_fetch_array($arr)) {
-                        ?>
-                        <tr >
-                            <td width="270px"><div><a href="details.php?id=<?php echo $row['id']?>"</a><?php echo $row['title']?></div> </td>
-                            <td width="120px"><?php echo $row['author'] ?></td>
-                            <td width="150px"><?php echo $row['last_post_time']?></td>
-                            <td width="60px"><?php if($row['reply_time']) echo "已解答";else echo "未解答"?></td>
-                        </tr>
-                        <tr>
-                            <p></p>
-                            <?php }
-                            }
-                            else{
-                                echo "<tr><td colspan='5'>暂无人问诊.....</td></tr>";
-                            } ?>
-
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                                <div class="pagelist" style="text-align: center">
-                                    <a href="?pageNum=1">首页</a>
-                                    <?php
-                                    if( $pageNum > 1 ){
-                                        ?>
-                                        <a href="?pageNum=<?php echo $pageNum==1?1:($pageNum-1)?>">上一页</a>
-                                        <?
-                                    }
-                                    if( $pageNum < $max_page ){
-                                        ?>
-                                        <a href=?pageNum=<?php echo $pageNum==$max_page?$max_page:($pageNum+1)?>">下一页</a>
-                                        <?
-                                    }
-                                    ?>
-                                    <a href="?pageNum=<?php echo $max_page?>">末页</a>
-                                    / 总页码 <font color="red"><?php echo $max_page;?></font>页 当前页码 <font color="red"><?php echo $pageNum;?></font>页
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <div class="pagelist" style="text-align: center">
+                <a href="?pageNum=1">首页</a>
+                <?php
+                if( $pageNum > 1 ){
+                    ?>
+                    <a href="?pageNum=<?php echo $pageNum==1?1:($pageNum-1)?>">上一页</a>
+                    <?
+                }
+                if( $pageNum < $max_page ){
+                    ?>
+                    <a href=?pageNum=<?php echo $pageNum==$max_page?$max_page:($pageNum+1)?>">下一页</a>
+                    <?
+                }
+                ?>
+                <a href="?pageNum=<?php echo $max_page?>">末页</a>
+                / 总页码 <font color="red"><?php echo $max_page;?></font>页 当前页码 <font color="red"><?php echo $pageNum;?></font>页
+            </div>
+        </td>
+    </tr>
+</table>
+	            </span>
                 </article><!-- bd end -->			  <!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end -->
             </article>
         </article>
     </div>
+    <div class="pagelist"  style="width:400px;height:400px;margin:0 auto" id="allmap"></div>
+        <script type="text/javascript">
+
+            //百度地图API功能
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom(new BMap.Point(120.378386,30.309756),15);//根据坐标初始化地图
+            map.enableScrollWheelZoom(true);
+            map.addControl(new BMap.NavigationControl());   //平移缩放控件
+            map.addControl(new BMap.ScaleControl());        //比例尺
+            map.addControl(new BMap.OverviewMapControl());  //缩略地图
+            map.addControl(new BMap.MapTypeControl());      //地图类型
+            map.setCurrentCity("杭州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+
+            //添加标注
+            var marker = new BMap.Marker(new BMap.Point(120.378386,30.309756));        // 创建标注
+            map.addOverlay(marker);                     // 将标注添加到地图中
+        </script>
+
 </article>
+
 <footer class="footer">
     <address>
 
