@@ -43,6 +43,9 @@ function get_Max_Page($link)
 @$pageSize =8;
 @$arr = consult($link,$pageNum,$pageSize);
 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -62,6 +65,14 @@ function get_Max_Page($link)
     <!--调用百度api -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=16zrDHPLkYrv8e1Tp98hPZ8UUpkKrsdv"></script>
     <title>地图展示</title>
+
+    <!-- tinaqi-->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="U-XA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <script type="text/javascript" src="/static/js/1.4.3/jquery.min.js"></script>
 </head>
 <style type="text/css">
     .slideBox .prev,.slideBox .next{
@@ -267,19 +278,21 @@ function get_Max_Page($link)
     <div class="pagelist"  style="width:400px;height:400px;margin:0 auto" id="allmap"></div>
     <p id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
     <button onclick="getLocation()">点我</button>
+<!--    <div class="pagelist"  style="width:400px;height:400px;margin:0 auto" id="chengshi"></div>-->
+<!--    <p id="chengshi">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>-->
     <script type="text/javascript">
         var x=document.getElementById("demo");
         var jd=120.3;
         var wd=30.3;
+        function getLocation()
+        {
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else{x.innerHTML="Geolocation is not supported by this browser.";}
+        }
 
-        if (navigator.geolocation)
-        {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-        else
-        {
-            x.innerHTML="该浏览器不支持获取地理位置。";
-        }
         function showPosition(position)
         {
             x.innerHTML="纬度: " + position.coords.latitude +
@@ -302,6 +315,14 @@ function get_Max_Page($link)
         map.addControl(new BMap.MapTypeControl());      //地图类型
         map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
 
+        // var nowCity = new BMap.LocalCity();
+        // nowCity.get(bdGetPosition);
+        // function bdGetPosition(result){
+        //     var cityName = result.name; //当前的城市名
+        //     var y=document.getElementById("chengshi");
+        //     y.innerHTML= cityName;
+        // }
+
 
         //添加标注
         var marker = new BMap.Marker(new BMap.Point(120.378386,30.309756));        // 创建标注
@@ -309,13 +330,67 @@ function get_Max_Page($link)
         // var marker1 = new BMap.Marker(new BMap.Point(jd,wd));        // 创建标注
         // map.addOverlay(marker1);                     // 将标注添加到地图中
 
-
-
-        </script>
-    <nav class="weather">
-        <iframe name="WeatherTool" src="http://i.tianqi.com/index.php?c=code&amp;id=34&amp;icon=1&amp;num=3&amp;py=hangzhou" width="260" height="28" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" allowtransparency="true" style="padding-top:7px"></iframe>
+    </script>
+    <nav>
+    <iframe name="WeatherTool" src="http://i.tianqi.com/index.php?c=code&amp;id=34&amp;icon=1&amp;num=3&amp;py=zhejiang" width="260" height="28" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" allowtransparency="true" style="padding-top:7px"></iframe>
     </nav>
+
+    <div class="pagelist"  style="width:400px;height:50px;margin:0 auto" id="chengshi"></div>
+        <p id="chengshi">点击按钮获取您当前城市（可能需要比较长的时间获取）：</p>
+        <button onclick="GetIPAll()">点我</button>
+    <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script src="https://ip.ws.126.net/ipquery"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        var iPAddress = "", iPAttach = "",iPcity ="";//IP地址，IP归属地
+        //获取IP地址，IP归属地
+        function GetIPAll() {
+            iPAddress = returnCitySN["cip"];//IP地址:
+            iPcity = returnCitySN["cname"];
+            iPAttach = localAddress["province"] + localAddress["city"];//IP归属地
+            var y=document.getElementById("chengshi");
+            y.innerHTML= iPAttach;
+            //GetIpLookup(iPAddress)
+        }
+    </script>
 </article>
+
+<?php
+//
+//header('Content-type:text/html;charset=utf-8');
+//include 'class.juhe.weather.php'; //引入天气请求类
+//
+////接口基本信息配置
+//$appkey = '**********'; //您申请的天气查询appkey
+//$weather = new weather($appkey);
+//$cityWeatherResult = $weather->getWeather('苏州');
+//if($cityWeatherResult['error_code'] == 0){    //以下可根据实际业务需求，自行改写
+//    //////////////////////////////////////////////////////////////////////
+//    $data = $cityWeatherResult['result'];
+//    echo "=======当前天气实况=======<br>";
+//    echo "温度：".$data['sk']['temp']."    ";
+//    echo "风向：".$data['sk']['wind_direction']."    （".$data['sk']['wind_strength']."）";
+//    echo "湿度：".$data['sk']['humidity']."    ";
+//    echo "<br><br>";
+//
+//    echo "=======未来几天天气预报=======<br>";
+//    foreach($data['future'] as $wkey =>$f){
+//        echo "日期:".$f['date']." ".$f['week']." ".$f['weather']." ".$f['temperature']."<br>";
+//    }
+//    echo "<br><br>";
+//
+//    echo "=======相关天气指数=======<br>";
+//    echo "穿衣指数：".$data['today']['dressing_index']." , ".$data['today']['dressing_advice']."<br>";
+//    echo "紫外线强度：".$data['today']['uv_index']."<br>";
+//    echo "舒适指数：".$data['today']['comfort_index']."<br>";
+//    echo "洗车指数：".$data['today']['wash_index'];
+//    echo "<br><br>";
+//
+//}else{
+//    echo $cityWeatherResult['error_code'].":".$cityWeatherResult['reason'];
+//}
+//
+//?>
 
 <footer class="footer">
     <address>
