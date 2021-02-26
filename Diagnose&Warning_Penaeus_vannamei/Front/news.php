@@ -272,15 +272,6 @@ function get_Max_Page($link)
         var jd=120.3;
         var wd=30.3;
 
-        //百度地图API功能
-        var map = new BMap.Map("allmap");
-        map.centerAndZoom(new BMap.Point(120.378386,30.309756),15);//根据坐标初始化地图
-        map.enableScrollWheelZoom(true);
-        map.addControl(new BMap.NavigationControl());   //平移缩放控件
-        map.addControl(new BMap.ScaleControl());        //比例尺
-        map.addControl(new BMap.OverviewMapControl());  //缩略地图
-        map.addControl(new BMap.MapTypeControl());      //地图类型
-        map.setCurrentCity("杭州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
         if (navigator.geolocation)
         {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -297,17 +288,33 @@ function get_Max_Page($link)
             jd=position.coords.longitude;
             var marker1 = new BMap.Marker(new BMap.Point(jd,wd));        // 创建标注
             map.addOverlay(marker1);                     // 将标注添加到地图中
+            map.centerAndZoom(new BMap.Point(jd,wd),15);//根据坐标初始化地图
         }
 
-            //添加标注
-            var marker = new BMap.Marker(new BMap.Point(120.378386,30.309756));        // 创建标注
-            map.addOverlay(marker);                     // 将标注添加到地图中
+        //百度地图API功能
+        var map = new BMap.Map("allmap");
+        map.centerAndZoom(new BMap.Point(jd,wd),15);//根据坐标初始化地图
+        //map.centerAndZoom(new BMap.Point(120.378386,30.309756),15);//根据坐标初始化地图
+        map.enableScrollWheelZoom(true);
+        map.addControl(new BMap.NavigationControl());   //平移缩放控件
+        map.addControl(new BMap.ScaleControl());        //比例尺
+        map.addControl(new BMap.OverviewMapControl());  //缩略地图
+        map.addControl(new BMap.MapTypeControl());      //地图类型
+        map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
 
 
+        //添加标注
+        var marker = new BMap.Marker(new BMap.Point(120.378386,30.309756));        // 创建标注
+        map.addOverlay(marker);                     // 将标注添加到地图中
+        // var marker1 = new BMap.Marker(new BMap.Point(jd,wd));        // 创建标注
+        // map.addOverlay(marker1);                     // 将标注添加到地图中
 
 
 
         </script>
+    <nav class="weather">
+        <iframe name="WeatherTool" src="http://i.tianqi.com/index.php?c=code&amp;id=34&amp;icon=1&amp;num=3&amp;py=hangzhou" width="260" height="28" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" allowtransparency="true" style="padding-top:7px"></iframe>
+    </nav>
 </article>
 
 <footer class="footer">
