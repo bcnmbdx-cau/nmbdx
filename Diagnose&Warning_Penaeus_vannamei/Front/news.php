@@ -304,6 +304,30 @@ function get_Max_Page($link)
             map.centerAndZoom(new BMap.Point(jd,wd),15);//根据坐标初始化地图
         }
 
+
+        // var position_option = {
+        //     enableHighAccuracy: true,
+        //     maximumAge: 30000,
+        //     timeout: 20000
+        // };
+        // function getLocation(){navigator.geolocation.getCurrentPosition(getPositionSuccess, getPositionError, position_option);}
+        // function getPositionSuccess( position ){
+        //     var lat = position.coords.latitude;
+        //     var lng = position.coords.longitude;
+        //     x.innerHTML="纬度: " + lat +
+        //              "<br>经度: " + lng;
+        //     var marker1 = new BMap.Marker(new BMap.Point(lng,lat));        // 创建标注
+        //     map.addOverlay(marker1);                     // 将标注添加到地图中
+        //     map.centerAndZoom(new BMap.Point(lng,lat),15);//根据坐标初始化地图
+        //     alert( "您所在的位置： 纬度" + lat + "，经度" + lng );
+        //     if(typeof position.address !== "undefined"){
+        //         var country = position.address.country;
+        //         var province = position.address.region;
+        //         var city = position.address.city;
+        //         alert(' 您位于 ' + country + province + '省' + city +'市');
+        //     }
+        // }
+
         //百度地图API功能
         var map = new BMap.Map("allmap");
         map.centerAndZoom(new BMap.Point(jd,wd),15);//根据坐标初始化地图
@@ -352,45 +376,79 @@ function get_Max_Page($link)
             y.innerHTML= iPAttach;
             //GetIpLookup(iPAddress)
         }
+
+
     </script>
 </article>
 
-<?php
-//
-//header('Content-type:text/html;charset=utf-8');
-//include 'class.juhe.weather.php'; //引入天气请求类
-//
-////接口基本信息配置
-//$appkey = '**********'; //您申请的天气查询appkey
-//$weather = new weather($appkey);
-//$cityWeatherResult = $weather->getWeather('苏州');
-//if($cityWeatherResult['error_code'] == 0){    //以下可根据实际业务需求，自行改写
-//    //////////////////////////////////////////////////////////////////////
-//    $data = $cityWeatherResult['result'];
-//    echo "=======当前天气实况=======<br>";
-//    echo "温度：".$data['sk']['temp']."    ";
-//    echo "风向：".$data['sk']['wind_direction']."    （".$data['sk']['wind_strength']."）";
-//    echo "湿度：".$data['sk']['humidity']."    ";
-//    echo "<br><br>";
-//
-//    echo "=======未来几天天气预报=======<br>";
-//    foreach($data['future'] as $wkey =>$f){
-//        echo "日期:".$f['date']." ".$f['week']." ".$f['weather']." ".$f['temperature']."<br>";
+
+    <?php
+    $url = "http://www.weather.com.cn/data/cityinfo/101010100.html";//
+    $str = file_get_contents($url);
+    $arr1=array($str);
+    //$result = gzdecode($str);   //解压
+    //$arr1 = json_decode($str, true); //获取到数组格式的数据。
+    print_r($arr1);
+    //print_r((array)$arr1[0]);
+//Array ( [data] => Array ( [yesterday] => Array ( [date] => 25日星期四 [high] => 高温 8℃ [fx] => 东北风 [low] => 低温 -3℃ [fl] => [type] => 霾 ) [city] => 北京
+    // [forecast] => Array ( [0] => Array ( [date] => 26日星期五 [high] => 高温 11℃ [fengli] => [low] => 低温 -3℃ [fengxiang] => 南风 [type] => 霾 )
+    // [1] => Array ( [date] => 27日星期六 [high] => 高温 13℃ [fengli] => [low] => 低温 -1℃ [fengxiang] => 南风 [type] => 多云 ) [2] => Array ( [date] => 28日星期天 [high] => 高温 6℃ [fengli] => [low] => 低温 0℃ [fengxiang] => 东北风 [type] => 雨夹雪 ) [3] => Array ( [date] => 1日星期一 [high] => 高温 5℃ [fengli] => [low] => 低温 -3℃ [fengxiang] => 东南风 [type] => 多云 ) [4] => Array ( [date] => 2日星期二 [high] => 高温 7℃ [fengli] => [low] => 低温 -2℃ [fengxiang] => 南风 [type] => 晴 ) ) [ganmao] => 感冒高发期，尽量避免外出，外出戴口罩防护。 [wendu] => 4 ) [status] => 1000 [desc] => OK )
+//    foreach ($arr1 as $player_data) {
+//        // Initialise the steam id to an empty string in case one is not found
+//        $player_steam_id = "";
+//        // Find the steam id in the identifiers array
+//        if (array_key_exists("identifiers", $player_data)) {
+//            $steam_identifiers = [];
+//            foreach ($player_data["identifiers"] as $identifier_str)
+//                if (preg_match("/^steam:/i", $identifier_str, $m))
+//                    $steam_identifiers[] = $identifier_str;
+//            if (!empty($steam_identifiers)) {
+//                $player_steam_id = $steam_identifiers[0];
+//            }
+//        }
+//        $player_id = $player_data["id"];
+//        $player_name = $player_data["name"];
+//        // Show what we have
+//        print( $player_id . " - " . $player_name . " - " . $player_steam_id . "
+//    " );
 //    }
-//    echo "<br><br>";
 //
-//    echo "=======相关天气指数=======<br>";
-//    echo "穿衣指数：".$data['today']['dressing_index']." , ".$data['today']['dressing_advice']."<br>";
-//    echo "紫外线强度：".$data['today']['uv_index']."<br>";
-//    echo "舒适指数：".$data['today']['comfort_index']."<br>";
-//    echo "洗车指数：".$data['today']['wash_index'];
-//    echo "<br><br>";
-//
-//}else{
-//    echo $cityWeatherResult['error_code'].":".$cityWeatherResult['reason'];
-//}
-//
-//?>
+//    foreach($arr1 as $rs){
+//    if(is_array($rs)) {
+//        echo $rs["city"] . "\t";
+//        echo $rs["cityid"] . "\t";
+//        echo $rs["temp1"] . "\t";
+//        echo $rs["temp2"] . "\t";
+//        echo $rs["weather"] . "\t";
+//        echo $rs["img1"] . "\t";
+//        echo $rs["img2"] . "\t";
+//        echo $rs["ptime"] . "\t\r\n";
+//    }
+//    }
+
+    $BiaoGe = "";
+
+
+    $BiaoGe = $BiaoGe."<table >";
+    //printf(count($arr1));
+    for ($i=0; $i<count($arr1); $i++)
+    {
+
+    $BiaoGe = $BiaoGe. "<tr>";
+    for ($j=0;$j<count($arr1[$i]);$j++)
+
+    {
+
+        $BiaoGe = $BiaoGe. "<td>".$arr1[$i][$j]."</td>";
+
+    }
+    $BiaoGe = $BiaoGe. "</tr>";
+
+    }
+    $BiaoGe = $BiaoGe. "</table>";
+    echo $BiaoGe;
+    ?>
+
 
 <footer class="footer">
     <address>
