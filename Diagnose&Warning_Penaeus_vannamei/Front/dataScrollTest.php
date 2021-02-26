@@ -6,7 +6,7 @@ if(empty($_SESSION['username']))
     echo "<script>alert('请先登录');location.href='login.html';</script>";
 }
 include_once "fmysql.php";
-$sql = "select * from water_quality_data where user_id ='3'";
+$sql = "select * from water_quality_data order by 采集时间 desc limit 1000";
 $result = mysqli_query($link, $sql);
 if (!$result) {
     printf("Error: %s\n", mysqli_error($link));
@@ -67,101 +67,30 @@ background-color:#f6f6f6;
         <thead>
         <tr>
             <th>采集时间</th>
+            <th>监测点位</th>
             <th>溶解氧</th>
             <th>水温</th>
+            <th>PH</th>
         </tr>
         </thead>
-        <?php
-        while($row=mysqli_fetch_array($result)) {
-        ?>
-        <thead>
-        <tr>
-            <th><?php echo $row['采集时间']?></th>
-            <th><?php echo $row['溶解氧']?></th>
-            <th><?php echo $row['水温']?></th>
-        </tr>
-        </thead>
-        <?php
-        }
-        ?>
-
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>大连</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>大连2</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>大连3</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>大连4</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>大连5</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>大连6</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>大连7</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>大连8</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>大连9</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>大连10</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>大连11</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>大连12</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>大连13</td>
-            <td>2470.48</td>
-        </tr>
-        <tr>
-            <td>14</td>
-            <td>大连14</td>
-            <td>2470.48</td>
-        </tr>
-<!--        <tr>-->
-<!--            <td>15</td>-->
-<!--            <td>大连15</td>-->
-<!--            <td>2470.48</td>-->
-<!--        </tr>-->
-        </tbody></table>
+            <?php
+            while($row=mysqli_fetch_array($result)) {
+            ?>
+
+            <tr>
+                <td><?php echo $row['采集时间']?></td>
+                <td><?php echo $row['监测点位']?></td>
+                <td><?php echo $row['溶解氧']?></td>
+                <td><?php echo $row['水温']?></td>
+                <td><?php echo $row['PH']?></td>
+            </tr>
+
+            <?php
+            }
+            ?>
+        </tbody>
+        </table>
 </div>
 
 <script>
