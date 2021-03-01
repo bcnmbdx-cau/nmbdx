@@ -306,74 +306,56 @@ else {
         <article class="col-body mb20">
             <article class="col-main clear">
                 <article class="bd">
-
-                    <table width="1000px" class="table table-hover" style="margin-top:5px">
-                        <tr class="title">
-                            <td colspan="11" style="text-align: center;border: none"><h1 style="font-size: 35px">智能预警</h1>
-                                <div class="buttonm">
-                                    <form action="upload_file.php" method="post" enctype="multipart/form-data">
-                                        <label for="file">文件名：</label>
-                                        <input type="file" name="file" id="file" class="button">
-                                        <input type="submit" name="submit" value="提交" class="button">
-                                    </form></div></td>
-                        </tr>
-                        <form method="post" action="diagnose_p.php">
-                            <tr>
-                                <th >参数</th>
-                                <?
-                                for($i=1;$i<11;$i++)
-                                {
-                                    echo "<th style='right'>".$i."</th>";
-                                }
-                                ?>
-                            </tr>
-                            <tr>
-                                <td style="width: 150px">pH值</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr>
-                                <td width="150px">溶解氧</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr>
-                                <td width="150px">温度</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr class="buttonm">
-                                <td colspan="11" style="text-align: center">
-                                    <input type="submit" value="提交" class="button">
-                                    <input type="reset" value="重置" class="button">
-                                </td>
-                            </tr>
-                        </form>
-                    </table>
-
                     <table width="1000px" class="table table-hover" style="margin-top:50px">
+                        <tr class="title">
+                            <td colspan="4" style="text-align: center;border: none"><h1 style="font-size: 35px">病害诊断</h1><a href="addconsult.php" style="text-decoration: none;color: #ff8181">点此向专家问诊</a></td>
+                        </tr>
+                        <tr>
+                            <td width="270px" style="font-size: 20px;">问题</td>
+                            <td width="120px" style="font-size: 20px;">用户</td>
+                            <td width="150px"style="font-size: 20px;">时间</td>
+                            <td width="60px" style="font-size: 20px;">问题状态</td>
+                        </tr>
+                        <?php
+                        if($pageNum>0) {
+                        while($row=mysqli_fetch_array($arr)) {
+                        ?>
+                        <tr >
+                            <td width="270px"><div><a href="details.php?id=<?php echo $row['id']?>"</a><?php echo $row['title']?></div> </td>
+                            <td width="120px"><?php echo $row['author'] ?></td>
+                            <td width="150px"><?php echo $row['last_post_time']?></td>
+                            <td width="60px"><?php if($row['reply_time']) echo "已解答";else echo "未解答"?></td>
+                        </tr>
+                        <tr>
+                            <p></p>
+                            <?php }
+                            }
+                            else{
+                                echo "<tr><td colspan='5'>暂无人问诊.....</td></tr>";
+                            } ?>
 
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <div class="pagelist" style="text-align: center">
+                                    <a href="?pageNum=1">首页</a>
+                                    <?php
+                                    if( $pageNum > 1 ){
+                                        ?>
+                                        <a href="?pageNum=<?php echo $pageNum==1?1:($pageNum-1)?>">上一页</a>
+                                        <?
+                                    }
+                                    if( $pageNum < $max_page ){
+                                        ?>
+                                        <a href=?pageNum=<?php echo $pageNum==$max_page?$max_page:($pageNum+1)?>">下一页</a>
+                                        <?
+                                    }
+                                    ?>
+                                    <a href="?pageNum=<?php echo $max_page?>">末页</a>
+                                    / 总页码 <font color="red"><?php echo $max_page;?></font>页 当前页码 <font color="red"><?php echo $pageNum;?></font>页
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </article><!-- bd end -->			  <!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end -->
             </article>

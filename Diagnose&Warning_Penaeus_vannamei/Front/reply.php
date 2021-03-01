@@ -1,13 +1,19 @@
 <?php
 session_start();
 header("Content-type:text/html;charset=utf-8"); //设置编码
+$reply_member_category=3;
 if(empty($_SESSION['username']))
 {
     echo "<script>alert('请先登录');location.href='login.html';</script>";
 }
-else if($_SESSION['category_id']==3)
+else if($_SESSION['category_id']==1)
 {
-    echo "<script>alert('很抱歉您不是专家，无法回复');history.go(-1);</script>";
+    $reply_member_category=1;
+//    echo "<script>alert('很抱歉您不是专家，无法回复');history.go(-1);</script>";
+}
+else
+{
+    $reply_member_category=3;
 }
 include_once "fmysql.php";
 $id=$_GET['id'];
@@ -170,7 +176,7 @@ $res=mysqli_fetch_array($arr);
                 <article class="bd">
                     <span class="news-list news-list1 w3">
 
-	                <form method="post" action="consultreply.php?id=<?php echo $_GET['id']; ?>" onsubmit=" return checkinput();" name="myform">
+	                <form method="post" action="consultreply.php?id=<?php echo $_GET['id']; ?>&&reply_member_category=<?php echo $reply_member_category; ?>" onsubmit=" return checkinput();" name="myform">
                         <table width="1000px"  width="1000px" class="table table-hover">
                                     <tr class="title">
             <td colspan="2" style="text-align: center;font-size: 20px">

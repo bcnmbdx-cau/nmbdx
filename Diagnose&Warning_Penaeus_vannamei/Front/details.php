@@ -17,6 +17,9 @@ $id=$_GET['id'];
 $sql="select * from consulting where id='{$id}'";
 $arr=mysqli_query($link,$sql);
 $res=mysqli_fetch_array($arr);
+$sql="select * from consulting_reply where consulting_id='{$id}' order by last_post_time";
+$arr=mysqli_query($link,$sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -170,44 +173,62 @@ $res=mysqli_fetch_array($arr);
     <div class="lp">
         <article class="col-body mb20">
             <article class="col-main clear">
-                <article class="bd">          <span class="news-list news-list1 w3">
+                <article class="bd">
+                    <span class="news-list news-list1 w3">
 
 	                <table width="1000px" class="table table-hover">
                         <?php echo "<tr>
-                 <td>用户提问（".$res['author']. "）".$res['last_post_time']."</td>
-                 <td> </td>
-                 </tr>
-                 <tr>
-                 <td style='border: none;font: 100px'>".$res['title']."<span class=\"fh\"><a style=\"color:deepskyblue\" href=\"consulting.php\">[返回]</a></span>";?>
+                         <td>用户提问（".$res['author']. "）".$res['last_post_time']."</td>
+                         <td> </td>
+                         </tr>
+                         <tr>
+                         <td style='border: none;font: 100px'>".$res['title']."<span class=\"fh\"><a style=\"color:deepskyblue\" href=\"consulting.php\">[返回]</a></span>";
+                        ?>
                         <span class="spa"><a style="color: #ee7700" href="reply.php?id=<?php echo$res['id']?>">[回复]</a></span>
-                 </td>
-                 </tr>
-    <tr>
-        <td rowspan="2" class="left">
-            问题详情描述：
-            <?php
-            echo "\n",$res['content']
-            ?>
-        </td>
-    </tr>
-    <tr>
-    </tr>
-    <?php
-    if($res['reply']==""){
-        echo "<tr>
-            <td colspan='2'>暂时还没有回复哦！！！</td>
-                    </tr>";
-            }else{
-                    echo "<tr>
-                 <td>专家回复（".$res['reply_author']. "）".$res['reply_time']."</td>
-                 <td> </td>
-                 </tr>
-                 <tr>
-                 <td  style='border: none'>".$res['reply']."</td>
-                 </tr>";
-                    }
-                    ?>
-</table>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="left">
+                                问题详情描述：
+                                <?php
+                                echo "\n",$res['content']
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <?php
+                        if($res['reply']=="")
+                        {
+                            echo "<tr>
+                                <td colspan='2'>暂时还没有回复哦！！！</td>
+                                        </tr>";
+                        }
+                        else
+                            {
+                                echo "<tr>
+                                     <td>专家回复（".$res['reply_author']. "）".$res['reply_time']."</td>
+                                     <td> </td>
+                                     </tr>
+                                     <tr>
+                                     <td  style='border: none'>".$res['reply']."</td>
+                                     </tr>";
+                            }
+                        $conut=1;
+                        while($reply=mysqli_fetch_array($arr))
+                        {
+
+                            echo "<tr>
+                                     <td>".$conut."楼-用户回复（".$reply['reply_author']. "）".$reply['last_post_time']."</td>
+                                     <td> </td>
+                                     </tr>
+                                     <tr>
+                                     <td  style='border: none'>".$reply['content']."</td>
+                                     </tr>";
+                            $conut++;
+                        }
+                        ?>
+                    </table>
 
 	            </span>
                 </article><!-- bd end -->			  <!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end -->
