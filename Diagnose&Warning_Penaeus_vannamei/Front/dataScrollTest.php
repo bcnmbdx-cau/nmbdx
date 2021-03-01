@@ -6,7 +6,7 @@ if(empty($_SESSION['username']))
     echo "<script>alert('请先登录');location.href='login.html';</script>";
 }
 include_once "fmysql.php";
-$sql = "select * from water_quality_data order by 采集时间 desc limit 1000";
+$sql = "select * from water_quality_data where user_id={$_SESSION['id']} order by 采集时间 desc limit 1000";
 $result = mysqli_query($link, $sql);
 if (!$result) {
     printf("Error: %s\n", mysqli_error($link));
