@@ -362,7 +362,7 @@ function get_Max_Page($link)
     </nav>
 
     <div class="pagelist"  style="width:400px;height:50px;margin:0 auto" id="chengshi"></div>
-        <p id="chengshi">点击按钮获取您当前城市（可能需要比较长的时间获取）：</p>
+        <p id="chengshi">点击按钮获取您当前ip地址（可能需要比较长的时间获取）：</p>
         <button onclick="GetIPAll()">点我</button>
     <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script src="https://ip.ws.126.net/ipquery"></script>
@@ -451,75 +451,7 @@ function get_Max_Page($link)
 //    echo $BiaoGe;
 //    ?>
 
-<!--<html lang="zh">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title></title>-->
-<!--    <link rel="stylesheet" type="text/css" href="../css/tq.css" />-->
-<!--    <link rel="stylesheet" type="text/css" href="../css/tq.css" />-->
-<!--</head>-->
-<!--<body>-->
-<!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
-<!--    <legend>--><?php //echo $month."有".$day."天";?><!--</legend>-->
-<!--    <div class="layui-inline">-->
-<!--        <label class="layui-form-label">年月选择器</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--            <input type="text" class="layui-input" id="test3">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</fieldset>-->
-<!--<div class="layui-row">-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期日</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期一</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期二</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期三</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期四</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期五</div>-->
-<!--    </div>-->
-<!--    <div class="layui-col-md1">-->
-<!--        <div class="grid-demo grid-demo-bg1">星期六</div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="layui-row">-->
-<!--    --><?php
-//    for($i=1;$i<=$day;$i++){
-//        $year_month_day = $month."-".$i;
-//        //星期0-6
-//        $index = date("w",strtotime($year_month_day));
-//        //位移
-//        $offset = 0;
-//        //i第一次循环而且不是星期天，添加位移
-//        if($i==1 && $index!=0){
-//            $offset = "layui-col-md-offset".$index;
-//        }else if($index==0){
-//            echo "<div class='layui-clear'></div>";
-//        }
-//        ?>
-<!--        <div class='layui-col-md1 --><?php //echo $offset ?><!--'>-->
-<!--            <div class='grid-demo grid-demo-bg1 grid-hover'>-->
-<!--                --><?php //echo $i;?>
-<!--                --><?php //if($i==date('j') && $month==date('Y-m')){
-//                    echo "<span class='weather'>$today_weather</span>";
-//                } ?>
-<!--            </div>-->
-<!--        </div>-->
-<!--        --><?php
-//    }
-//    ?>
-<!---->
+
 
 <!--<div id="he-plugin-standard" style="text-align:center"></div>-->
 <!--<script>-->
@@ -549,29 +481,31 @@ function get_Max_Page($link)
     <link href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet"/>
     <title>天气查询简单版</title>
 </head>
-<body>
-<form class="form-horizontal" action="" method="post">
-    <legend>
-        Weather
-    </legend>
-    <div class="control-group">
-        <label class="control-label" for="idCity">城市：</label>
-        <div class="controls">
-            <input name="city" type="text" name="city" id="idCity" placeholder="请输入城市名字" maxlength="64">
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            <button type="submit" class="btn btn-primary" style="margin: 10px">
-                确定
-            </button>
-            <button type="reset" class="btn btn-inverse" style="margin: 10px">
-                重置
-            </button>
-        </div>
-    </div>
-</form>
-<hr/>
+<!--<body>-->
+<!--<form class="form-horizontal" action="" method="post">-->
+<!--    <legend>-->
+<!--        Weather-->
+<!--    </legend>-->
+<!--    <div class="control-group">-->
+<!--        <label class="control-label" for="idCity">城市：</label>-->
+<!--        <div class="controls">-->
+<!--            <input name="city" type="text" name="city" id="idCity" placeholder="请输入城市名字" maxlength="64">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="control-group">-->
+<!--        <div class="controls">-->
+<!--            <button type="submit" class="btn btn-primary" style="margin: 10px">-->
+<!--                确定-->
+<!--            </button>-->
+<!--            <button type="reset" class="btn btn-inverse" style="margin: 10px">-->
+<!--                重置-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<hr/>-->
+
+
 <!--<button onclick="getLocation1()">点我</button>-->
 <!--<script type="text/javascript">-->
 <!--    var x=document.getElementById("demo");-->
@@ -614,9 +548,37 @@ function getWeather() {
 //    return $datat;
 
 //这里需要更新经纬度坐标
+?>
+<script type="text/javascript">
+    var x=document.getElementById("demo");
+    var jd=120.3;
+    var wd=30.3;
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{x.innerHTML="Geolocation is not supported by this browser.";}
+    }
 
-    $jd ="123.2111";
-    $wd = "30.2111";
+    function showPosition(position)
+    {
+        x.innerHTML="纬度: " + position.coords.latitude +
+            "<br>经度: " + position.coords.longitude;
+        wd=position.coords.latitude;
+        jd=position.coords.longitude;
+        // var marker1 = new BMap.Marker(new BMap.Point(jd,wd));        // 创建标注
+        // map.addOverlay(marker1);                     // 将标注添加到地图中
+        // map.centerAndZoom(new BMap.Point(jd,wd),15);//根据坐标初始化地图
+    }
+</script>
+    <?php $jd="<script type=text/javascript>document.write(jd)</script>";
+          $wd="<script type=text/javascript>document.write(wd)</script>";
+    //$jd ="123.2111";
+    //$wd = "30.2111";
+    print_r($jd);
+    print_r($wd);
     $url = "https://api.caiyunapp.com/v2.5/SqbtWNg8TqBq6ikN/" . "" . $jd.",".$wd . "" . "/realtime.json";//
     $str = file_get_contents($url);
 //$result = gzdecode($str);   //解压
@@ -626,8 +588,8 @@ function getWeather() {
 
 }
 
-if ($_POST != null && $_POST["city"] != null) {
-    $arr = getWeather();
+//if ($_POST != null && $_POST["city"] != null) {
+$arr = getWeather();
     if ($arr == null) {?>
         <div class="alert alert-block" style="margin: 20px">
             <button type="button" class="close" data-dismiss="alert">
@@ -640,7 +602,7 @@ if ($_POST != null && $_POST["city"] != null) {
     }
     $info = $arr["result"]["realtime"];
     ?>
-    <table class="table table-striped table-bordered" style="margin-left: 20px;width: 200px">
+    <table class="table table-striped table-bordered" style="table-layout:fixed;width: 75%" align="center"  text-align="center";>
         <thead>
         <th>实时天气信息</th>
         </thead>
@@ -658,7 +620,7 @@ if ($_POST != null && $_POST["city"] != null) {
         </tbody>
     </table>
     <?php
-}
+
 ?>
 </body>
 
