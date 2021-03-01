@@ -622,7 +622,7 @@ $arr = getWeather();
     <?php
 
 ?>
-</body>
+
 
 
 <footer class="footer">
