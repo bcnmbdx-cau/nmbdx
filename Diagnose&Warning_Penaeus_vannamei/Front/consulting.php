@@ -697,8 +697,9 @@ else {
                 <article class="slideTxtBox slideTxtBox1 w100 fl">
                     <article class="hd">
                         <ul class="clear">
-                            <li>水质实时数据</li>
-
+                            <li style="margin-left:200px; margin-right:10px">
+                                水质实时数据
+                            </li>
                         </ul>
                         <?php
                         session_start();
@@ -816,8 +817,10 @@ else {
 
                 <article class="slideTxtBox slideTxtBox1 w100 fl">
                     <article class="hd">
-                        <ul class="clear">
-                            <li>地理位置信息</li>
+                        <ul class="clear" >
+                            <li style="margin-left:200px; margin-right:10px">
+                                地理位置信息
+                            </li>
                         </ul>
 
                         <?php
