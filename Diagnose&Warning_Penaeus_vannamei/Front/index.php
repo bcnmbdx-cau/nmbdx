@@ -194,11 +194,11 @@ img:hover {
 .nav{    margin-bottom: 0px;
 }</style>
 <article class="main-news clear" style="margin-top: 15px;">
-	<figure id="slideBox" class="slideBox slideBox1">
+	<figure id="slideBox" class="slideBox slideBox1" style="border: 5px solid red;">
 	    <div class="hd">
 	        <ul class="clear"><li></li><li></li><li></li><li></li><li></li></ul>
 	    </div>
-	    <figure class="bd">
+	    <figure class="bd"  >
 	        <ul>
 	            <li class="pic-box pic-box1">
 	                <a><img src="../images/1.jpg" height='320' width='500' border='0'/></a>
@@ -235,9 +235,9 @@ img:hover {
 	    jQuery(".slideBox1").slide({mainCell:".bd ul",effect:"left",autoPlay:true,easing:"swing",delayTime:500,mouseOverStop:true,pnLoop:true});
 	</script>
 
-	<article class="slideTxtBox slideTxtBox1">
-<a class="prev" href="javascript:void(0)"></a>
-                            <a class="next" href="javascript:void(0)"></a>
+	<article class="slideTxtBox slideTxtBox1" style="border: 5px solid red;">
+        <a class="prev" href="javascript:void(0)"></a>
+        <a class="next" href="javascript:void(0)"></a>
 	    <article class="hd">
 	        <ul class="clear">
                     <li class="on">预警信息</li>
@@ -254,12 +254,11 @@ img:hover {
 <article class="main-col clear">
 	<div class="lp">
 		<article class="col-body mb20">
-			<article class="col-main clear">
-				<article class="slideTxtBox slideTxtBox1 w100 fl">
-				    <article class="hd">
+			<article class="col-main clear" >
+				<article class="slideTxtBox slideTxtBox1 w100 fl" >
+				    <article class="hd" style="border-top: 1px solid #BADAA1;">
 				        <ul class="clear">
 				            <li>养殖技术</li>
-
 				        </ul>
                         <?
                         $category=1;
@@ -269,7 +268,7 @@ img:hover {
 				</article><!-- slideTxtBox end -->
 
 				<article class="slideTxtBox slideTxtBox1 w100 fl">
-				    <article class="hd">
+				    <article class="hd" style="border-top: 1px solid #BADAA1 ;">
 				        <ul class="clear">
 				            <li>病害知识</li>
 				        </ul>
