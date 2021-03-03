@@ -23,6 +23,9 @@ if($_GET['act']=="loginout"){
     <link rel="stylesheet" href="../css/table.css">
     <script src="../js/jquery.1.71.min.js"></script>
     <script src="../js/jquery.SuperSlide.2.1.1.js"></script>
+<!--    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>-->
+<!--    <script src="http://libs.baidu.com/bootstrap/2.0.4/js/bootstrap.min.js"></script>-->
+<!--    <link href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet"/>-->
     <script type="text/javascript" src="../js/jquery.1.71.min.js"></script>
     <style type="text/css">
         #disappare {
@@ -71,7 +74,7 @@ if($_GET['act']=="loginout"){
             line-height:36px;
         }
         .tablebox table th {
-            color:#2584e3;
+            color:#ed0000;
             background-color:#f6f6f6;
         }
         .tablebox table td img {
@@ -147,7 +150,17 @@ if($_GET['act']=="loginout"){
         width: 100px;
 
     }
-
+    .w1 li a {
+        width: 448px !important;
+    }
+    .w2 li a {
+        width: 192px !important;
+    }
+    .w3 li a {
+        width: 298px  !important;
+    }
+    .nav{    margin-bottom: 0px;
+    }
 </style>
 <style>
     .slideBox-common { width:1200px !important;}
@@ -155,11 +168,12 @@ if($_GET['act']=="loginout"){
     .slideBox-common li img{width:1200px !important;}
     .slideBox-common .hd ul { height:12px !important;}
     .slideBox-common .hd { bottom:15px !important; }
-    .pagelist {padding:10px 0; text-align:center; border: 3px solid red;}
-    .pagelist span,.pagelist a{ border-radius:3px; border:1px solid #dfdfdf;display:inline-block; padding:5px 12px;}
-    .pagelist a{ margin:0 3px;}
+    .pagelist {padding:10px 0; text-align:center;}
+    .pagelist span,.pagelist input,.pagelist button{ border-radius:3px; border:1px solid #dfdfdf;display:inline-block; padding:5px 12px;}
+    .pagelist input,.pagelist button{ margin:0 3px;}
     .pagelist span.current{ background:#09F; color:#FFF; border-color:#09F; margin:0 2px;}
-    .pagelist a:hover{background:red; color:#FFF; border-color:red; }
+    .pagelist input:hover{background:red; color:#FFF; border-color:red; }
+    .pagelist button:hover{background:red; color:#FFF; border-color:red; }
     .pagelist label{ padding-left:15px; color:#999;}
     .pagelist label b{color:red; font-weight:normal; margin:0 3px;}
 </style>
@@ -232,19 +246,6 @@ if($_GET['act']=="loginout"){
         </li>
     </ul>
 </nav>
-
-<style>
-    .w1 li a {
-        width: 448px !important;
-    }
-    .w2 li a {
-        width: 192px !important;
-    }
-    .w3 li a {
-        width: 298px  !important;
-    }
-    .nav{    margin-bottom: 0px;
-    }</style><!-- main-news end -->
 <article class="main-col clear">
     <div class="lp">
         <article class="col-body mb20">
@@ -253,67 +254,70 @@ if($_GET['act']=="loginout"){
 
                     <table width="1000px" class="table table-hover" style="margin-top:5px">
                         <tr class="title">
-                            <td colspan="11" style="text-align: center;border: none"><h1 style="font-size: 35px">智能预警</h1>
-                                <div class="buttonm">
+                            <td colspan="11" style="text-align: center;border: none">
+                                <h1 style="font-size: 35px">智能预警</h1>
+                                <div class="pagelist" >
                                     <form action="upload_file.php" method="post" enctype="multipart/form-data">
                                         <label for="file">文件名：</label>
                                         <input type="file" name="file" id="file" class="button">
-                                        <input type="submit" name="submit" value="提交" class="button">
-                                    </form></div></td>
+                                        <input type="submit" name="submit" value="提交">
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
-                        <form method="post" action="diagnose_p.php">
-                            <tr>
-                                <th >参数</th>
-                                <?
-                                for($i=1;$i<11;$i++)
-                                {
-                                    echo "<th style='right'>".$i."</th>";
-                                }
-                                ?>
-                            </tr>
-                            <tr>
-                                <td style="width: 150px">pH值</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr>
-                                <td width="150px">溶解氧</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr>
-                                <td width="150px">温度</td>
-                                <?
-                                for($i=0;$i<10;$i++)
-                                {
-                                    echo "<td>";
-                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
-                                    echo "</td>";
-                                }
-
-                                ?>
-                            </tr>
-                            <tr class="buttonm">
-                                <td colspan="11" style="text-align: center">
-                                    <input type="submit" value="提交" class="button">
-                                    <input type="reset" value="重置" class="button">
-                                </td>
-                            </tr>
-                        </form>
+<!--                        <form method="post" action="diagnose_p.php">-->
+<!--                            <tr>-->
+<!--                                <th >参数</th>-->
+<!--                                --><?//
+//                                for($i=1;$i<11;$i++)
+//                                {
+//                                    echo "<th style='right'>".$i."</th>";
+//                                }
+//                                ?>
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td style="width: 150px">pH值</td>-->
+<!--                                --><?//
+//                                for($i=0;$i<10;$i++)
+//                                {
+//                                    echo "<td>";
+//                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
+//                                    echo "</td>";
+//                                }
+//
+//                                ?>
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td width="150px">溶解氧</td>-->
+<!--                                --><?//
+//                                for($i=0;$i<10;$i++)
+//                                {
+//                                    echo "<td>";
+//                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
+//                                    echo "</td>";
+//                                }
+//
+//                                ?>
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td width="150px">温度</td>-->
+<!--                                --><?//
+//                                for($i=0;$i<10;$i++)
+//                                {
+//                                    echo "<td>";
+//                                    echo "<input type='text' style='text-align: right;width: 60px;border: none' name='contents[]' value=''/>";
+//                                    echo "</td>";
+//                                }
+//
+//                                ?>
+<!--                            </tr>-->
+<!--                            <tr class="buttonm">-->
+<!--                                <td colspan="11" style="text-align: center">-->
+<!--                                    <input type="submit" value="提交" class="button">-->
+<!--                                    <input type="reset" value="重置" class="button">-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </form>-->
                     </table>
                 </article><!-- bd end -->			  <!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end --><!-- slideTxtBox end -->
             </article>
@@ -328,47 +332,6 @@ if($_GET['act']=="loginout"){
 
 
 <script src="../js/jquery.1.11.3.min.js"></script>
-<style>
-    table,tbody,tfoot,thead,tr,th,td {
-        margin:0;
-        padding:0;
-        outline:0;
-        font-size:100%;
-        vertical-align:baseline;
-        background:transparent;
-        border-collapse:collapse;
-        border-spacing:0;
-        border:0px;
-    }
-    .tablebox {
-        width:300px;
-        height:400px;
-        overflow:hidden;
-        margin:50px auto;
-    }
-    .tablebox table {
-        width:100%;
-    }
-    .tablebox table th,.tablebox table td {
-        font-size:12px;
-        text-align:center;
-        line-height:36px;
-    }
-    .tablebox table th {
-        color:#2584e3;
-        background-color:#f6f6f6;
-    }
-    .tablebox table td img {
-        display:inline-block;
-        vertical-align:middle;
-    }
-    .tablebox table tbody tr:nth-child(even) {
-        background-color:#f6f6f6;
-    }
-    .tablebox.table_md table td,.tablebox.table_md table th {
-        line-height:40px;
-    }
-</style>
 <article class="main-col clear">
     <div class="lp">
         <article class="col-body mb20">
@@ -523,11 +486,15 @@ if($_GET['act']=="loginout"){
                         ?>
                         <!-- 地图功能实现 margin:0 auto -->
                         <p> </p>
-                        <div class="pagelist"  border="1" bordercolor="#000000" style="width:400px;height:400px;margin-left:100px;margin-top: 50px" id="allmap"></div>
-                        <p style="margin-left:200px;" id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
+                        <div class="pagelist" style="width:400px;height:400px;margin-left:100px;margin-top: 50px" id="allmap">
+<!--                            <p style="margin-left:200px;" id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>-->
+                        </div>
+
                         <p> </p>
-                        <button style="margin-left:200px;" onclick="tipsWindow();getLocation();">获取你的位置</button>
-                        <script type="text/javascript">
+                        <div class="pagelist">
+                            <button onclick="tipsWindow();getLocation();">获取你的位置</button>
+                        </div>
+                            <script type="text/javascript">
                             //百度地图API功能
                             var map = new BMap.Map("allmap");
                             map.enableScrollWheelZoom(true);
@@ -551,7 +518,6 @@ if($_GET['act']=="loginout"){
                             }
                             function httpGetAsync(url)
                             {
-                                //window.open(url);
                                 var xmlHttp = new XMLHttpRequest();
                                 xmlHttp.open("GET", url, true); // true 为异步
                                 xmlHttp.send();
@@ -584,13 +550,6 @@ if($_GET['act']=="loginout"){
                             }
                         </script>
 
-                        <head>
-                            <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-                            <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-                            <script src="http://libs.baidu.com/bootstrap/2.0.4/js/bootstrap.min.js"></script>
-                            <link href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css" rel="stylesheet"/>
-                            <title>天气查询简单版</title>
-                        </head>
                         <?php
                         if($row['location_x']&&$row['location_y'])
                         {
@@ -603,10 +562,8 @@ if($_GET['act']=="loginout"){
                         //这里需要更新经纬度坐标
                         $jd=$row['location_x'];
                         $wd=$row['location_y'];
-                        //$jd ="123.2111";
-                        //$wd = "30.2111";
-                        print_r($jd);
-                        print_r($wd);
+//                        print_r($jd);
+//                        print_r($wd);
                         $url = "https://api.caiyunapp.com/v2.5/SqbtWNg8TqBq6ikN/" . "" . $jd.",".$wd . "" . "/realtime.json";//
                         $str = file_get_contents($url);
                         //$result = gzdecode($str);   //解压
@@ -642,6 +599,7 @@ if($_GET['act']=="loginout"){
                 <table align="center" class="table table-striped table-bordered"  style="width: 75%;margin-left:200px;";>
                 <thead>
                 <th>实时天气信息</th>
+                <th></th>
                 </thead>
                 <tbody>
                 <?php
