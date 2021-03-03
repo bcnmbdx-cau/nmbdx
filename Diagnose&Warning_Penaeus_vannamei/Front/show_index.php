@@ -20,6 +20,9 @@ include_once "./fmysql.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
 </head>
+<style>
+
+</style>
 <body>
 <form>
     <div>
@@ -30,19 +33,25 @@ include_once "./fmysql.php";
                 {
                     ?>
                     <table>
-                        <table width="90%" style="font-size: 14px">
-                            <td width="50%" location="center">
+                        <table width="90%" style="font-size: 14px ; border-top: 2px whitesmoke solid ;">
+<!--                            <ul class="clear">-->
+<!---->
+<!--                            </ul>-->
+
+                            <td width="50%" height="50%" location="center"  >
                                 <?php
                                 echo "<a href='r.php?id={$val['id']}'>{$val['title']}</a>";
 
                                 ?>
                             </td>
-                            <td width="25%" location="center">
+
+                            <td width="25%" height="50%" location="center">
+                                <img src="../images/adminjpg.jpg" align=center vspace=5 hspace=10 width="20" height="20">
                                 <?php
                                 echo "{$val['author']}";
                                 ?>
                             </td>
-                            <td width="25%">
+                            <td width="25%" height="50%">
                                 <?php
                                 echo "{$val['created_at']}";
                                 ?>

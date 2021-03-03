@@ -31,7 +31,10 @@ while($row = mysqli_fetch_array($result)) {
                 {
                     ?>
                     <table>
-                        <table width="90%" style="font-size: 14px">
+                        <table width="90%" style="font-size: 14px ;border-top: 2px whitesmoke solid ;">
+<!--                            <ul class="clear">-->
+<!---->
+<!--                            </ul>-->
                             <td width="50%">
                                 <?php
                                     echo "<a href='details.php?id={$val['id']}'>{$val['title']}</a>"

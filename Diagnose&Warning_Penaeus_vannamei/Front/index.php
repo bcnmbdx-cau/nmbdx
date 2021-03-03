@@ -25,6 +25,17 @@ if($_GET['act']=="loginout"){
 <script src="../js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 <style type="text/css">
+    /*p {*/
+    /*    text-align: center;*/
+    /*    font:bold 60px helvetica, arial, sans-serif;*/
+    /*    color: red;        !*字体设为红色*!*/
+    /*    text-shadow: 0 0 4px white,    !*第一层阴影为白色*!*/
+    /*    0 -5px 4px #ff3,     !*第二层阴影为黄色*!*/
+    /*    2px -10px 6px #fd3,     !*第三层阴影为浅橙色*!*/
+    /*    -2px -15px 11px #f80,     !*第四层阴影为深橙色*!*/
+    /*    2px -25px 18px #f20;    !*最后一层阴影为红色，扩散效果设置较明显*!*/
+    /*}*/
+
 	.box{
         width: 339px;
         margin: 0px auto;
@@ -194,7 +205,7 @@ img:hover {
 .nav{    margin-bottom: 0px;
 }</style>
 <article class="main-news clear" style="margin-top: 15px;">
-	<figure id="slideBox" class="slideBox slideBox1" style="border: 5px solid red;">
+	<figure id="slideBox" class="slideBox slideBox1" style="border: 2px red solid ;">
 	    <div class="hd">
 	        <ul class="clear"><li></li><li></li><li></li><li></li><li></li></ul>
 	    </div>
@@ -235,13 +246,13 @@ img:hover {
 	    jQuery(".slideBox1").slide({mainCell:".bd ul",effect:"left",autoPlay:true,easing:"swing",delayTime:500,mouseOverStop:true,pnLoop:true});
 	</script>
 
-	<article class="slideTxtBox slideTxtBox1" style="border: 5px solid red;">
+	<article class="slideTxtBox slideTxtBox1">
         <a class="prev" href="javascript:void(0)"></a>
         <a class="next" href="javascript:void(0)"></a>
 	    <article class="hd">
-	        <ul class="clear">
+<!--	        <ul class="clear">-->
                     <li class="on">预警信息</li>
-	        </ul>
+<!--	        </ul>-->
             <?
             $category=3;
             include"show_index.php";
@@ -256,10 +267,10 @@ img:hover {
 		<article class="col-body mb20">
 			<article class="col-main clear" >
 				<article class="slideTxtBox slideTxtBox1 w100 fl" >
-				    <article class="hd" style="border-top: 1px solid #BADAA1;">
-				        <ul class="clear">
+				    <article class="hd">
+<!--				        <ul class="clear">-->
 				            <li>养殖技术</li>
-				        </ul>
+<!--				        </ul>-->
                         <?
                         $category=1;
                         include"show_index.php";
@@ -268,10 +279,10 @@ img:hover {
 				</article><!-- slideTxtBox end -->
 
 				<article class="slideTxtBox slideTxtBox1 w100 fl">
-				    <article class="hd" style="border-top: 1px solid #BADAA1 ;">
-				        <ul class="clear">
+				    <article class="hd">
+<!--				        <ul class="clear">-->
 				            <li>病害知识</li>
-				        </ul>
+<!--				        </ul>-->
                         <?
                         $category=2;
                         include"show_index.php";
@@ -280,9 +291,9 @@ img:hover {
 				</article><!-- slideTxtBox end -->
 				<article class="slideTxtBox slideTxtBox1 w100 fl">
 				    <article class="hd">
-				        <ul class="clear">
+<!--				        <ul class="clear">-->
 				            <li>专家问诊</li>
-				        </ul>
+<!--				        </ul>-->
                         <?
                         include"show_exdiagnose_index.php";
                         ?>
@@ -290,12 +301,12 @@ img:hover {
 				</article><!-- slideTxtBox end -->
 				<article class="slideTxtBox slideTxtBox1 w100 fl">
 				    <article class="hd">
-				        <ul class="clear">
+<!--				        <ul class="clear" >-->
 				            <li>在线诊断</li>
-				        </ul>
+<!--				        </ul>-->
                         <form method="post" action="diagnose_p.php">
-                            <table width="90%" style="font-size: 14px">
-                                <tr style="height: 50px">
+                            <table width="90%" style="font-size: 14px ;">
+                                <tr style="height: 50px ;" >
                                     <td width="50%" location="center">pH值</td>
                                     <td>
                                         <div class="com-sel">
@@ -307,7 +318,7 @@ img:hover {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr style="height: 50px">
+                                <tr style="height: 50px ;">
                                     <td width="50%" location="center">溶解氧</td>
                                     <td>
                                         <div class="com-sel">
@@ -320,7 +331,7 @@ img:hover {
                                     </td>
 
                                 </tr>
-                                <tr style="height: 50px">
+                                <tr style="height: 50px ;">
                                     <td width="50%" location="center">温度</td>
                                     <td>
                                         <div class="com-sel">
@@ -344,7 +355,7 @@ img:hover {
                                     </td>
                                 </tr>
 
-                                <tr style="height: 50px">
+                                <tr style="height: 50px ;">
                                     <td width="50%" location="center">氨氮</td>
                                     <td>
                                         <div class="com-sel">
@@ -359,7 +370,7 @@ img:hover {
 
                                 <tr>
 
-                                    <td style="text-align: right">
+                                    <td style="text-align: right ">
                                         <input type="submit" value="提交">
                                     <td style="text-align: left">
                                         <input type="reset" value="重置">
