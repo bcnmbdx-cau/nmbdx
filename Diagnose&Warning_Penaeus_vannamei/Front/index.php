@@ -35,8 +35,29 @@ if($_GET['act']=="loginout"){
     /*    -2px -15px 11px #f80,     !*第四层阴影为深橙色*!*/
     /*    2px -25px 18px #f20;    !*最后一层阴影为红色，扩散效果设置较明显*!*/
     /*}*/
+    #float_banner{
+        position:absolute;
+        top:20px;
+        left:50%;
+        width:900px;
+        margin-left:-450px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        background-color:transparent;
+        font-size:20px;
+        font-weight:bold;
+        color: red;
+        z-index:2;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-color: red;
+    }
 
-	.box{
+    /*侧栏跟随*/
+    #box{float:left;position:relative;width:250px;}.div1{width:250px;}.div2{position:fixed;_position:absolute;top:0;z-index:250;}
+    .box{
         width: 339px;
         margin: 0px auto;
         font-size: 18px;
@@ -115,7 +136,60 @@ img:hover {
 </style>
 <body>
 <header class="header" >
-  
+
+    <div id="float_banner" style="border: 2px whitesmoke solid ;">
+        防止“转水”和“倒藻”。在“转水”发生前，虾池水体表面暗淡，此时排水30-40厘米，施用活性黑土（腐植酸钠），再加水至原水位。养殖前期出现“倒藻”，主要原因是水体缺乏营养盐类，应施用单细胞藻类生长素，保持水体透明度在25-30厘米；养殖后期出现“倒藻”，是因为水质老化，应先排水30-40厘米，施用益水宝，然后加水至原水位。
+    </div>
+    <script language="javascript">
+        var speed = 100;
+        var scrollTop = null;
+        var hold = 0;
+        var float_banner;
+        var pos = null;
+        var timer = null;
+        var moveHeight = null;
+        float_banner = document.getElementById("float_banner");
+        window.onscroll=scroll_ad;
+        function scroll_ad(){
+            scrollTop = document.documentElement.scrollTop+document.body.scrollTop;
+            pos = scrollTop - float_banner.offsetTop;
+            pos = pos/10
+            moveHeight = pos>0?Math.ceil(pos):Math.floor(pos);
+            if(moveHeight!=0){
+                float_banner.style.top = float_banner.offsetTop+moveHeight+3+"px";
+                setTimeout(scroll_ad,speed);
+            }
+//alert(scrollTop);
+        }
+        function f() {
+            //根据id获取所对应的div,document意思是去整个html文档中找，getElementById是根据ID
+            var tag = document.getElementById('float_banner')
+            //拿到div中的文本，注意innertext方法没有括弧
+            var content = tag.innerText
+            //获取它这个字符串的第一个文字
+            var z =content.charAt(0)
+            //获取这个文本除第一个字以外的文本，用substring给它起始位置
+            var  l = content.substring(1,content.length)
+            //把第一个字符放到最后一位拼接起来
+            var new_content = l+z
+            //用新生成new_content把div中的文本替换掉
+            tag.innerText = new_content
+        }
+        //setInterval是个定时器，第一个参数是要执行的内容，第二个参数是执行间隔，单位为毫秒
+        setInterval('f()',500)
+    </script>
+
+    <!-- 浮动广告代码开始 -->
+
+    <div id="left_layer" style="position:fixed; top:350px; right:0px;">
+        <img src="../images/kefu.jpg"width="200px" height="100px"><br>
+
+        <a href="javascript:;" onclick="javascript:document.getElementById('left_layer').style.display='none';">关闭</a>
+
+    </div>
+
+    <!-- 浮动广告代码结束 -->
+
   <nav class="nav-center clear">
     	
    	<nav class="weather">
